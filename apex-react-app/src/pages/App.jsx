@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const Table_ID = "1RO0zPuE133VxwHYOVNxF3B5AFujT9fW2uvXjv5IxtYM"
 const Table_Name = '1'
@@ -24,24 +25,24 @@ function App() {
 
 
 
+  //id title year description image slug
   return (
-    <>
-      <h1>Hello World</h1>
-      <div>
+      <div className="cardContainer">
         {apexData.map((apxD)=>{
           return(
-            <div>
-              <ol>
-                <li key={apxD.id}>{apxD.title} <br /><br /> {apxD.year} <br /><br /> {apxD.description} <br /><br /> {apxD.image} <br /> {apxD.slug}</li>
-              </ol>
-              <br />
-              <hr />
-              <br />
+            <Link to={`/${apxD.slug}`}>
+            <div key={apxD.id} className="card">
+              <div className="textCard">
+                <h1 className="title">{apxD.title}</h1>
+                <p className="year">{apxD.year}</p>
+                <h2 className="description">{apxD.description}</h2>
+              </div>
+              <img src={apxD.image} alt="" />
             </div>
+            </Link>
           )
         })}
       </div>
-    </>
   )
 }
 
